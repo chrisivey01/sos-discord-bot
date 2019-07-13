@@ -17,8 +17,6 @@ module.exports = {
     let v = 0;
     let un = 0;
 
-    //do not foreach this, for of goes 1 by 1, foreach is everything
-
     for await (const res of results) {
       await delay(2000);
 
@@ -28,9 +26,6 @@ module.exports = {
         gw2Info = await axios.get(gw2Api + res.api);
         if (playerFound !== null) {
 
-          console.log("This user is on " + world);
-          console.log("This user is on " + linkId);
-          
           if (gw2Info.data.world === world) {
             await playerFound.addRole(verified);
             console.log("Verified " + v++);
@@ -44,7 +39,7 @@ module.exports = {
             console.log("Paired " + v++);
           } else {
             await playerFound.removeRole(paired);
-            console.log("Paired " + un++);
+            console.log("Not Paired " + un++);
           }
         }
       } catch (err) {
