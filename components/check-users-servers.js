@@ -10,7 +10,9 @@ module.exports = {
     //find server
     const server = client.guilds.get("315306476212322315");
     //define role to give
-    let verified = server.roles.find(x => x.name === "SoS Citizen");
+    const verified = server.roles.find(x => x.name === "SoS Citizen");
+    const paired = server.roles.find(x => x.name === "Paired");
+
     // let iterator = 0;
     let v = 0;
     let un = 0;
@@ -24,17 +26,21 @@ module.exports = {
       let gw2Info;
       try {
         gw2Info = await axios.get(gw2Api + res.api);
-        // await delay(1500)
-
         if (playerFound !== null) {
-          if (gw2Info.data.world === world || gw2Info.data.world === linkId) {
-            //add role
+          if (gw2Info.data.world === world) {
             await playerFound.addRole(verified);
             console.log("Verified " + v++);
           } else {
-            //removerole
             await playerFound.removeRole(verified);
             console.log("Unverified " + un++);
+          }
+
+          if (gw2Info.data.world === linkId) {
+            await playerFound.addRole(paired);
+            console.log("Paired " + v++);
+          } else {
+            await playerFound.removeRole(paired);
+            console.log("Paired " + un++);
           }
         }
       } catch (err) {

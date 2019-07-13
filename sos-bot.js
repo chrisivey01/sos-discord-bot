@@ -72,4 +72,8 @@ client.on("message", async message => {
   if (message.content.match("!messageUsers")) {
     messageAllUsers.messageRanksAndRemoveRoles(message, client);
   }
+
+  if (message.content.match("!forceScan")) {
+    checkUsersServers.scan(message, client, database, link, world);
+  }
 });
