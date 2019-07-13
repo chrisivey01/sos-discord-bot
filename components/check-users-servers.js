@@ -27,6 +27,10 @@ module.exports = {
       try {
         gw2Info = await axios.get(gw2Api + res.api);
         if (playerFound !== null) {
+
+          console.log("This user is on " + world);
+          console.log("This user is on " + linkId);
+          
           if (gw2Info.data.world === world) {
             await playerFound.addRole(verified);
             console.log("Verified " + v++);

@@ -27,7 +27,9 @@ module.exports = {
             }
         })
         console.log('SOS link server is ' + updateLinked)
-
+        if(message){
+            message.channel.send("SOS link server is " + updateLinked)
+        }
         return updateLinked;
 
     }
