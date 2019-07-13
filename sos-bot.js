@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./auth.json");
-const cron = require("cron").CronJob;
 
 //handles registration of users
 const registerUsers = require("./components/register-users.js");
@@ -69,9 +68,13 @@ client.on("message", async message => {
     registerUsers.register(message, database, client, link, world);
   }
 
-  if (message.content.match("!messageUsers")) {
-    messageAllUsers.messageRanksAndRemoveRoles(message, client);
+  if (message.content.match("!updateLink")){
+    updateServerLink.updateLink(message, world, link, delay);
   }
+
+  // if (message.content.match("!messageUsers")) {
+  //   messageAllUsers.messageRanksAndRemoveRoles(message, client);
+  // }
 
   if (message.content.match("!forceScan")) {
     checkUsersServers.scan(message, client, database, link, world);
