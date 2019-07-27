@@ -31,7 +31,7 @@ new CronJob(
 new CronJob(
   "0 0 */12 * * *",
   async () => {
-    await checkUsersServers.scan(message, client, pool, link, world);
+    await checkUsersServers.scan(message, client, database, link, world);
     console.log("You will see this message every 12 hours");
   },
   null,
